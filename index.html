@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshStart Mental Health Support | Zimbabwe</title>
+  <link rel="icon" type="image/png" href="https://i.imgur.com/MjMfoGA.png">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root {
+            --brand-primary: #16a085; 
+            --bg-dark: #0a0f1a;
+            --surface: #151c2c;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --text-dark: #0f172a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Solid White Navigation for Logo Blending */
+        .navbar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: #ffffff; 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 10px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo-pill { display: flex; align-items: center; gap: 10px; }
+        .logo-pill img { height: 60px; width: auto; }
+        .logo-pill span { font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; color: var(--text-dark); }
+
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { 
+            color: var(--text-dark); 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .nav-links a:hover { color: var(--brand-primary); }
+
+        /* Dynamic Split Hero */
+        .hero-section {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-text-side {
+            padding: 10% 12%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-text-side h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.2; 
+            font-weight: 800;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            background: linear-gradient(to bottom right, #fff, #16a085);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-slider-side {
+            position: relative;
+            background: #000;
+        }
+
+        .slide {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1.5s ease-in-out;
+        }
+        .slide.active { opacity: 0.7; }
+
+        .cta-button {
+            padding: 18px 40px;
+            background: var(--brand-primary);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: fit-content;
+            transition: 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+        .cta-button:hover { letter-spacing: 4px; background: #fff; color: #000; }
+
+        .section { padding: 120px 10%; max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 80px; border-left: 4px solid var(--brand-primary); padding-left: 20px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; }
+
+        .program-masonry {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .p-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 12px;
+            transition: 0.4s;
+        }
+        .p-card:hover { transform: translateY(-10px); border: 1px solid var(--brand-primary); }
+        .p-card.large { grid-column: span 7; }
+        .p-card.small { grid-column: span 5; }
+        .p-card h3 { color: var(--brand-primary); margin-bottom: 15px; font-size: 1.5rem; }
+
+        .editorial-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .gallery-box { height: 300px; overflow: hidden; border-radius: 8px; }
+        .gallery-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(50%); }
+        .gallery-box:hover img { filter: grayscale(0%); transform: scale(1.05); }
+
+        .team-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        .team-box { text-align: center; }
+        .team-box img { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; margin: 0 auto 20px; border: 4px solid var(--surface); }
+        .team-info h4 { font-size: 1.1rem; margin-bottom: 5px; }
+        .team-info p { color: var(--brand-primary); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; }
+
+        .contact-wrap {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pvo-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(22, 160, 133, 0.2);
+            border: 1px solid var(--brand-primary);
+            color: var(--brand-primary);
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            padding: 40px 10%;
+            background: #050810;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+
+        /* Best in Class Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .hero-section { grid-template-columns: 1fr; height: auto; padding-top: 100px; }
+            .hero-text-side { padding: 40px 5%; order: 2; text-align: center; align-items: center; }
+            .hero-slider-side { height: 45vh; order: 1; }
+            .p-card.large, .p-card.small { grid-column: span 12; padding: 30px; }
+            .editorial-gallery { grid-template-columns: repeat(2, 1fr); }
+            .navbar-container { padding: 10px 5%; }
+            .nav-links { display: none; } /* Mobile users typically use scrolling in minimalist designs */
+            .logo-pill span { font-size: 0.8rem; }
+            .section { padding: 60px 5%; }
+            .section-header { text-align: center; padding-left: 0; border-left: none; border-bottom: 2px solid var(--brand-primary); padding-bottom: 10px; }
+            .contact-wrap { padding: 40px 20px; }
+            .contact-wrap h2 { font-size: 2.2rem; }
+            .contact-wrap a[href^="tel"] { font-size: 1.5rem !important; }
+            footer { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+ </head>
+ <body>
+  <main>
+   <nav class="navbar-container">
+    <div class="logo-pill"><img src="https://i.imgur.com/MjMfoGA.png" alt="Logo"> <span>FRESHSTART</span>
+    </div>
+    <ul class="nav-links">
+     <li><a onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'})">Home</a></li>
+     <li><a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">The Mission</a></li>
+     <li><a onclick="document.getElementById('programs').scrollIntoView({behavior:'smooth'})">Focus</a></li>
+     <li><a onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Gallery</a></li>
+     <li><a onclick="document.getElementById('team').scrollIntoView({behavior:'smooth'})">Leadership</a></li>
+     <li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a></li>
+    </ul>
+   </nav>
+   <section id="home" class="hero-section">
+    <div class="hero-text-side">
+     <h1>Compassion. Community. Recovery.</h1>
+     <p style="color: var(--text-dim); margin-bottom: 40px; font-size: 1.1rem; font-weight: 300;">Empowering Zimbabwe through professional mental health advocacy and substance abuse support.</p><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="cta-button">Get Support Now</a>
+    </div>
+    <div class="hero-slider-side">
+     <div class="slide active" style="background-image: url('https://i.imgur.com/7pF3FWl.jpg');"></div>
+     <div class="slide" style="background-image: url('https://i.imgur.com/QdtYstt.jpg');"></div>
+     <div class="slide" style="background-image: url('https://i.imgur.com/ig14IAn.jpg');"></div>
+    </div>
+   </section>
+   <section id="about" class="section">
+    <div class="section-header">
+     <h2>Who We Are</h2>
+    </div>
+    <div class="program-masonry">
+     <div class="p-card large">
+      <h3>Our Story</h3>
+      <p>FreshStart is a community-driven initiative dedicated to transforming the landscape of mental wellness in Zimbabwe. We are committed to dismantling stigma through compassionate care, community-led support, and professional advocacy that restores dignity to those we serve.</p>
+     </div>
+     <div class="p-card small" style="background: var(--brand-primary); color: white;">
+      <h3 style="color: white;">Integrity</h3>
+      <p>We operate under the highest standards of ethics and safeguarding to ensure a secure, professional environment for our community while adhering to international best practices.</p>
+     </div>
+     <div class="p-card small">
+      <h3>Our Vision</h3>
+      <p>To become Zimbabwe's leading center for excellence in mental health support and comprehensive substance abuse rehabilitation.</p>
+     </div>
+     <div class="p-card large">
+      <h3>The Mission</h3>
+      <p>To serve as a beacon of hope for a drug-free society. We believe that true healing begins with community care, fostering resilience and recovery in every heart we touch.</p>
+     </div>
+    </div>
+   </section>
+   <section id="programs" class="section" style="background: #080c14;">
+    <div class="section-header">
+     <h2>Our Focus</h2>
+    </div>
+    <div class="program-masonry">
+     <div class="p-card small">
+      <h3>Counselling</h3>
+      <p>Compassionate, professional support for those navigating substance abuse recovery and mental health challenges.</p>
+     </div>
+     <div class="p-card small">
+      <h3>Workshops</h3>
+      <p>Engaging educational sessions designed to build mental health awareness and community resilience.</p>
+     </div>
+     <div class="p-card small">
+      <h3>Training</h3>
+      <p>Equipping caregivers and educators with the essential tools to identify and support mental health needs.</p>
+     </div>
+     <div class="p-card small">
+      <h3>Advocacy</h3>
+      <p>Strategic campaigns aimed at challenging stigma and promoting mental wellness at a national level.</p>
+     </div>
+    </div>
+   </section>
+   <section id="gallery" class="section">
+    <div class="section-header">
+     <h2>Impact Gallery</h2>
+    </div>
+    <div class="editorial-gallery">
+     <div class="gallery-box">
+      <img src="https://i.ibb.co/svmW2mPM/Whats-App-Image-2026-02-07-at-01-23-21.jpg" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+     </div>
+     <div class="gallery-box">
+      <img src="https://i.ibb.co/qLLpnY4K/Whats-App-Image-2026-02-07-at-01-23-21-5.jpg" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+     </div>
+     <div class="gallery-box">
+      <img src="https://i.ibb.co/hFz70PmG/Whats-App-Image-2026-02-07-at-01-23-21-1.jpg" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+     </div>
+     <div class="gallery-box">
+      <img src="https://i.ibb.co/Myf7HVft/Whats-App-Image-2026-02-07-at-01-23-20-1.jpg" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+     </div>
+    </div>
+   </section>
+   <section id="team" class="section">
+    <div class="section-header">
+     <h2>Leadership</h2>
+    </div>
+    <div class="team-list">
+     <div class="team-box"><img src="https://i.ibb.co/1Yd4Qs52/Whats-App-Image-2026-02-07-at-00-52-23-3.jpg" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+      <div class="team-info">
+       <h4>Dr. Morine Matongo</h4>
+       <p>Executive Director</p>
+      </div>
+     </div>
+     <div class="team-box"><img src="https://i.ibb.co/SwKS843V/Whats-App-Image-2026-02-07-at-00-52-23.jpg" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+      <div class="team-info">
+       <h4>Belinda Mwale</h4>
+       <p>Programs &amp; Gender Specialist</p>
+      </div>
+     </div>
+     <div class="team-box"><img src="https://i.ibb.co/Psf62Lh2/Whats-App-Image-2026-02-07-at-00-52-23-1.jpg" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+      <div class="team-info">
+       <h4>Edgar Shumba</h4>
+       <p>MEAL &amp; Safeguarding Specialist</p>
+      </div>
+     </div>
+     <div class="team-box"><img src="https://i.ibb.co/LXtCVMbz/Whats-App-Image-2026-02-07-at-00-52-23-2.jpg" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+      <div class="team-info">
+       <h4>Melissa Ruvimbo Matongo</h4>
+       <p>Communications</p>
+      </div>
+     </div>
+     <div class="team-box"><img src="https://i.ibb.co/7Nk8GycQ/Whats-App-Image-2026-02-07-at-00-52-23-4.jpg" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+      <div class="team-info">
+       <h4>Nyasha A. Machekanyanga</h4>
+       <p>Logistics</p>
+      </div>
+     </div>
+    </div>
+    <div class="section-header" style="margin-top: 100px;">
+     <h2>Board of Governance</h2>
+    </div>
+    <div class="program-masonry">
+     <div class="p-card small">
+      <h3>Mr. Abel Matare</h3>
+      <p>Board Chair</p>
+     </div>
+     <div class="p-card small">
+      <h3>Mr. Nhamoinesu Mahachi</h3>
+      <p>Vice Chair</p>
+     </div>
+     <div class="p-card small">
+      <h3>Safeguarding</h3>
+      <p>We maintain the highest standards of safeguarding for all beneficiaries and staff in a dignified environment.</p>
+     </div>
+    </div>
+   </section>
+   <section id="contact" class="section">
+    <div class="contact-wrap">
+     <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 10px;">Reach out.</h2>
+     <p style="color: var(--text-dim); margin-bottom: 40px;">Professional mental health support is just a call or email away.</p>
+     <div style="margin-bottom: 20px;">
+      <p style="font-size: 0.8rem; color: var(--brand-primary); text-transform: uppercase; font-weight: 700; margin-bottom: 5px;">Primary Phone</p><a href="tel:0788995440" style="font-size: 2rem; color: #fff; font-weight: 800; text-decoration: none;">0788 995 440</a>
+     </div>
+     <div style="margin-bottom: 30px;">
+      <p style="font-size: 0.8rem; color: var(--brand-primary); text-transform: uppercase; font-weight: 700; margin-bottom: 5px;">Secondary Phone</p><a href="tel:0713403415" style="font-size: 2rem; color: #fff; font-weight: 800; text-decoration: none;">0713 403 415</a>
+     </div>
+     <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 5px;">admin@freshstartngo.org</p>
+     <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 30px;">117-119 Rotten Row, Brunok Building, Harare, Zimbabwe</p><a href="mailto:admin@freshstartngo.org" class="cta-button">Send Email</a>
+    </div>
+   </section>
+   <footer>
+    <div>
+     © 2026 FRESHSTART MENTAL HEALTH SUPPORT. ALL RIGHTS RESERVED.
+    </div>
+    <div style="letter-spacing: 2px;">
+     DEVELOPED BY ZIMWEBLIFY
+    </div>
+   </footer>
+  </main>
+  <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 5000); 
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc82880d149ee4d',t:'MTc3MDg1ODEyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
