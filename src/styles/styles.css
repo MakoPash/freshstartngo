@@ -1584,7 +1584,7 @@ ul {
     }
     
     .stats-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 32px;
     }
     
@@ -2212,4 +2212,5 @@ em.coming-soon {
         width: 50%;
     }
 }
+
 
