@@ -3,7 +3,7 @@
    =========================== */
 :root {
     --bg-canvas: #FDFBF2;
-    --primary-brand: #000000b1;
+    --primary-brand: #000000cc;
     --accent-cta: #9CAF41;
     --highlight-hover: #F7E0A3;
     --secondary-accent: #D1DCE2;
@@ -2212,3 +2212,4 @@ em.coming-soon {
         width: 50%;
     }
 }
+
