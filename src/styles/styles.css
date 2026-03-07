@@ -2206,3 +2206,9 @@ em.coming-soon {
     width: 30%;
     height: auto;
 }
+
+@media screen and (max-width: 768px) {
+    .logo-image {
+        width: 50%;
+    }
+}
