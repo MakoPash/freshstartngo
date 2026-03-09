@@ -1017,6 +1017,11 @@ ul {
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
+.helpline-buttons {
+    display: flex;
+    gap: 16px;
+}
+
 .helpline-info h3 {
     color: var(--primary-brand);
     font-size: 18px;
@@ -2219,6 +2224,7 @@ em.coming-soon {
     }
 
 }
+
 
 
 
