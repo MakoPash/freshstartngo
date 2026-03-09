@@ -1032,6 +1032,7 @@ ul {
 .helpline-buttons {
     display: flex;
     gap: 16px;
+    flex-direction: row;
 }
 
 .helpline-hours {
@@ -2222,12 +2223,4 @@ em.coming-soon {
         align-items: center;
         text-align: center;
     }
-
 }
-
-
-
-
-
-
-
