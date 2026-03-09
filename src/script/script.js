@@ -235,7 +235,7 @@ const searchDatabase = [
         page: 'Contact',
         url: 'contact.html',
         title: 'Email Contact',
-        content: 'Email us at info@freshstart.org.zw for inquiries and support. We respond within 24 hours.'
+        content: 'Email us at info@freshstartngo.org.zw for inquiries and support. We respond within 24 hours.'
     },
     {
         page: 'Contact',
